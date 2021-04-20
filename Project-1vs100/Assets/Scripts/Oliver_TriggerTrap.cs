@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerTrap : MonoBehaviour
+public class Oliver_TriggerTrap : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     //private GameObject[] enemies;
@@ -21,7 +21,7 @@ public class TriggerTrap : MonoBehaviour
             {
                 //animator.SetBool("drawSword", true);
                 other.GetComponent<Animator>().SetBool("attack", true);
-                other.GetComponent<RagdollToggle>().isWalking = false;
+                other.GetComponent<Oliver_RagdollToggle>().isWalking = false;
                 trap.GetComponent<BoxCollider>().enabled = false;
             }
     }
@@ -31,7 +31,7 @@ public class TriggerTrap : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 other.GetComponent<Animator>().SetBool("attack", false);
-                other.GetComponent<RagdollToggle>().isWalking = true;
+                other.GetComponent<Oliver_RagdollToggle>().isWalking = true;
             }
     }
 

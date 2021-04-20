@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RagdollToggle : MonoBehaviour
+public class Thea_RagdollToggle : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Animator animator = null;
@@ -36,14 +36,14 @@ public class RagdollToggle : MonoBehaviour
     {
         animator.enabled = !state;
 
-        foreach(Rigidbody rb in ragdollBodies)
+        foreach (Rigidbody rb in ragdollBodies)
         {
             rb.isKinematic = !state;
         }
 
         foreach (Collider collider in ragdollColliders)
         {
-            if(collider.isTrigger != true)
+            if (collider.isTrigger != true)
             {
                 collider.enabled = state;
             }
@@ -72,7 +72,7 @@ public class RagdollToggle : MonoBehaviour
 
     public void Walk(bool isWalking)
     {
-        if(isWalking == true)
+        if (isWalking == true)
         {
             float step = speed * Time.deltaTime;
             Vector3 target = new Vector3(castle.transform.position.x, transform.position.y, transform.position.z);
@@ -96,11 +96,11 @@ public class RagdollToggle : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(gameObject.tag == "Enemy")
+        if (gameObject.tag == "Enemy")
         {
             isWalking = false;
             ToggleRagdoll(true);
-            foreach(Rigidbody rb in ragdollBodies)
+            foreach (Rigidbody rb in ragdollBodies)
             {
                 rb.AddExplosionForce(75f, transform.position, 5f, 0f, ForceMode.Impulse);
                 onClickExplosion();
