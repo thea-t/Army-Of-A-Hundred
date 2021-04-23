@@ -4,48 +4,75 @@ using UnityEngine;
 
 public enum PlayerSpells
 {
+    MagicMissle,
     Fireball,
     GravitySinkHole,
     PoisonCloud
 }
 public class Oliver_Player_Controller : MonoBehaviour
 {
+    public Camera mainCamera;
+    public PlayerSpells currentSpell;
+    public Oliver_Spell_List spells;
+
     private void Start()
     {
         
     }
 
-    private void onClickExplosion()
+    private void OnClick()
     {
-        //Instantiate(onClickExplosionEffect, transform.position, transform.rotation);
+        if(Input.GetButtonDown("Fire1"))
+        {
+            RaycastHit hit;
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                var clickedObj = hit.transform.gameObject;
+                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.MagicMissle)
+                {
+                    spells.MagicMissle(clickedObj);
+                }
+                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.Fireball)
+                {
+                    spells.Fireball(clickedObj);
+                }
+                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.PoisonCloud)
+                {
+                    spells.PoisonCloud(clickedObj);
+                }
+                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.GravitySinkHole)
+                {
+                    spells.GravitySinkHole(clickedObj);
+                }
+            }
+        }
     }
 
-    private void OnMouseDown()
+    void CheckSpellKey()
     {
-        if (gameObject.tag == "Enemy")
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //Spell Effect
-            gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
-            gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
-            var ragdollBodies = gameObject.GetComponentsInChildren<Rigidbody>();
-            foreach (Rigidbody rb in ragdollBodies)
-            {
-                rb.AddExplosionForce(75f, transform.position, 5f, 0f, ForceMode.Impulse);
-                onClickExplosion();
-            }
-            gameObject.GetComponent<Oliver_EnemyController>().hasDied = true;
+            currentSpell = PlayerSpells.MagicMissle;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentSpell = PlayerSpells.Fireball;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentSpell = PlayerSpells.PoisonCloud;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentSpell = PlayerSpells.GravitySinkHole;
         }
     }
 
     void Update()
     {
-        
-        RaycastHit hit;
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            Fireball(hit.transform.position, hit.transform.rotation);
-        }
+        CheckSpellKey();
+        OnClick();
     }
 }

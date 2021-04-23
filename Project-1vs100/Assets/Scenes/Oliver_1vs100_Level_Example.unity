@@ -39122,6 +39122,8 @@ GameObject:
   - component: {fileID: 1678452785}
   - component: {fileID: 1678452784}
   - component: {fileID: 1678452783}
+  - component: {fileID: 1678452787}
+  - component: {fileID: 1678452786}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -39194,6 +39196,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 8.212001, y: 4.1740003, z: 0.597}
+--- !u!114 &1678452786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678452782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7b1e47f07f57042adb444ca5ccaa8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicMissleEffect: {fileID: 198220379293217532, guid: d8f0099df63275647a8bcf646df1ca00,
+    type: 3}
+  magicMissleRadius: 5
+  magicMissleForce: 75
+  fireBallEffect: {fileID: 198917022394846920, guid: e1b08032bec16ba4eb1ae23cbd572664,
+    type: 3}
+  fireBallRadius: 5
+  fireBallForce: 3500
+  posionCloudEffect: {fileID: 198938402097657526, guid: 6f672a31584a6a748912a49c1dce2f0c,
+    type: 3}
+  posionedEnemyMat: {fileID: 2100000, guid: 416632d927deed14aba866be7ed1cb0b, type: 2}
+  posionCloudRadius: 2
+  gravitySinkHoleEffect: {fileID: 198362321346080034, guid: 8be4d0d0456ee8d42be4cc3b70260fc5,
+    type: 3}
+  gravitySinkHoleRadius: 5
+  gravitySinkHoleForce: -5000
+--- !u!114 &1678452787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678452782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b507a54d8f851f4aa928932e38cd340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1678452784}
+  currentSpell: 0
+  spells: {fileID: 1678452786}
 --- !u!1001 &1681947949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49089,7 +49134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2143513189
 MonoBehaviour:
   m_ObjectHideFlags: 0

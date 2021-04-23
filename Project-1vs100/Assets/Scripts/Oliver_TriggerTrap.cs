@@ -21,7 +21,7 @@ public class Oliver_TriggerTrap : MonoBehaviour
             {
                 //animator.SetBool("drawSword", true);
                 other.GetComponent<Animator>().SetBool("attack", true);
-                other.GetComponent<Oliver_RagdollToggle>().isWalking = false;
+                other.GetComponent<Oliver_EnemyController>().isWalking = false;
                 trap.GetComponent<BoxCollider>().enabled = false;
             }
     }
@@ -31,7 +31,7 @@ public class Oliver_TriggerTrap : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 other.GetComponent<Animator>().SetBool("attack", false);
-                other.GetComponent<Oliver_RagdollToggle>().isWalking = true;
+                other.GetComponent<Oliver_EnemyController>().isWalking = true;
             }
     }
 

@@ -19,6 +19,9 @@ public class Oliver_EnemyController : MonoBehaviour
     private float countdown;
     private bool hasExploded;
     public bool hasDied;
+    private float health = 100f;
+    public bool isPoisoned;
+    private float poisonDmg = 33.4f;
 
     private void Start()
     {
@@ -29,6 +32,7 @@ public class Oliver_EnemyController : MonoBehaviour
         countdown = delay;
         castle = GameObject.FindGameObjectWithTag("Target");
         hasDied = false;
+        isPoisoned = false;
         //target = castle.transform;
     }
 
@@ -55,11 +59,6 @@ public class Oliver_EnemyController : MonoBehaviour
         Instantiate(deathExplosionEffect, transform.position, transform.rotation);
     }
 
-    private void onClickExplosion()
-    {
-        Instantiate(onClickExplosionEffect, transform.position, transform.rotation);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Boulder")
@@ -80,6 +79,21 @@ public class Oliver_EnemyController : MonoBehaviour
         }
     }
 
+    private void Poisoned()
+    {
+        if(isPoisoned == true)
+        {
+            health -= poisonDmg * Time.deltaTime;
+            if (health <= 0f)
+            {
+                isWalking = false;
+                ToggleRagdoll(true);
+                hasDied = true;
+                Death();
+            }
+        }
+    }
+
     private void Death()
     {
         if (hasDied == true)
@@ -94,24 +108,10 @@ public class Oliver_EnemyController : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        if(gameObject.tag == "Enemy")
-        {
-            isWalking = false;
-            ToggleRagdoll(true);
-            foreach(Rigidbody rb in ragdollBodies)
-            {
-                rb.AddExplosionForce(75f, transform.position, 5f, 0f, ForceMode.Impulse);
-                onClickExplosion();
-            }
-            hasDied = true;
-        }
-    }
-
     private void Update()
     {
         Walk(isWalking);
+        Poisoned();
         Death();
     }
 }

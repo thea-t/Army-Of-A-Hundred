@@ -4,68 +4,97 @@ using UnityEngine;
 
 public class Oliver_Spell_List : MonoBehaviour
 {
-
+    [SerializeField] private ParticleSystem magicMissleEffect;
+    public float magicMissleRadius = 5f;
+    public float magicMissleForce = 75f;
     [SerializeField] private ParticleSystem fireBallEffect;
     public float fireBallRadius = 5f;
-    public float fireBallForce = 700f;
+    public float fireBallForce = 3500f;
+    [SerializeField] private ParticleSystem posionCloudEffect;
+    [SerializeField] private Material posionedEnemyMat;
+    public float posionCloudRadius = 2f;
     [SerializeField] private ParticleSystem gravitySinkHoleEffect;
     public float gravitySinkHoleRadius = 5f;
-    public float gravitySinkHoleForce = 700f;
-    [SerializeField] private ParticleSystem posionCloud;
-    public Camera mainCamera;
-    public PlayerSpells currentSpell;
-    private void Fireball(Vector3 position, Quaternion rotation)
-    {
-        Instantiate(fireBallEffect, position, rotation);
+    public float gravitySinkHoleForce = -3500f;
 
-        Collider[] colliders = Physics.OverlapSphere(position, fireBallRadius);
+
+    public void MagicMissle(GameObject gameObject)
+    {
+        Instantiate(magicMissleEffect, gameObject.transform.position, gameObject.transform.rotation);
+        gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
+        gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
+        var ragdollBodies = gameObject.GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in ragdollBodies)
+        {
+            rb.AddExplosionForce(magicMissleForce, gameObject.transform.position, magicMissleRadius, 0f, ForceMode.Impulse);
+        }
+        gameObject.GetComponent<Oliver_EnemyController>().hasDied = true;
+    }
+    public void Fireball(GameObject gameObject)
+    {
+        Instantiate(fireBallEffect, gameObject.transform.position, gameObject.transform.rotation);
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, fireBallRadius, 1, QueryTriggerInteraction.Collide);
         foreach (Collider nearbyObject in colliders)
         {
-            nearbyObject.GetComponent<Oliver_RagdollToggle>().isWalking = false;
-            nearbyObject.GetComponent<Oliver_RagdollToggle>().ToggleRagdoll(true);
+            if(nearbyObject.CompareTag("Enemy"))
+            {
+                Debug.Log("Enemy");
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().hasDied = true;
+            }
         }
 
-        Collider[] collidersToExplode = Physics.OverlapSphere(position, fireBallRadius);
+        Collider[] collidersToExplode = Physics.OverlapSphere(gameObject.transform.position, fireBallRadius);
         foreach (Collider nearbyObject in collidersToExplode)
         {
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(fireBallForce, position, fireBallRadius);
+                rb.AddExplosionForce(fireBallForce, gameObject.transform.position, fireBallRadius);
             }
         }
     }
 
-    public void OnEnemyPosioned()
+    public void PoisonCloud(GameObject gameObject)
     {
-        Instantiate(enemyPoisoned, transform.position, transform.rotation);
+        Instantiate(posionCloudEffect, gameObject.transform.position, gameObject.transform.rotation);
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, posionCloudRadius, 1, QueryTriggerInteraction.Collide);
+        foreach (Collider nearbyObject in colliders)
+        {
+            if (nearbyObject.CompareTag("Enemy"))
+            {
+                Debug.Log("Enemy");
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().isPoisoned = true;
+                nearbyObject.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = posionedEnemyMat;
+            }
+        }
     }
 
-    public void OnEnemyFrozen()
+    public void GravitySinkHole(GameObject gameObject)
     {
-        Instantiate(enemyFrozen, transform.position, transform.rotation);
-
-    }
-    private void Update()
-    {
-        CheckSpellKey();
-    }
-
-    void CheckSpellKey()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
+        Instantiate(gravitySinkHoleEffect, gameObject.transform.position, gameObject.transform.rotation);
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, gravitySinkHoleRadius, 1, QueryTriggerInteraction.Collide);
+        foreach (Collider nearbyObject in colliders)
         {
-            currentSpell = Spells.Fireball;
+            if (nearbyObject.CompareTag("Enemy"))
+            {
+                Debug.Log("Enemy");
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().hasDied = true;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        Collider[] collidersToExplode = Physics.OverlapSphere(gameObject.transform.position, gravitySinkHoleRadius);
+        foreach (Collider nearbyObject in collidersToExplode)
         {
-            currentSpell = Spells.Poison;
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(gravitySinkHoleForce, gameObject.transform.position, gravitySinkHoleRadius);
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            currentSpell = Spells.Frostball;
-        }
     }
 }
