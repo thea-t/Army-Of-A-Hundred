@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Oliver_Spell_List : MonoBehaviour
 {
-    public Camera mainCamera;
-    public GameObject fireBallEffect;
+
+    [SerializeField] private ParticleSystem fireBallEffect;
     public float fireBallRadius = 5f;
     public float fireBallForce = 700f;
-    public GameObject gravitySinkHoleEffect;
+    [SerializeField] private ParticleSystem gravitySinkHoleEffect;
     public float gravitySinkHoleRadius = 5f;
     public float gravitySinkHoleForce = 700f;
+    [SerializeField] private ParticleSystem posionCloud;
+    public Camera mainCamera;
+    public PlayerSpells currentSpell;
     private void Fireball(Vector3 position, Quaternion rotation)
     {
         Instantiate(fireBallEffect, position, rotation);
@@ -30,6 +33,39 @@ public class Oliver_Spell_List : MonoBehaviour
             {
                 rb.AddExplosionForce(fireBallForce, position, fireBallRadius);
             }
+        }
+    }
+
+    public void OnEnemyPosioned()
+    {
+        Instantiate(enemyPoisoned, transform.position, transform.rotation);
+    }
+
+    public void OnEnemyFrozen()
+    {
+        Instantiate(enemyFrozen, transform.position, transform.rotation);
+
+    }
+    private void Update()
+    {
+        CheckSpellKey();
+    }
+
+    void CheckSpellKey()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            currentSpell = Spells.Fireball;
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            currentSpell = Spells.Poison;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            currentSpell = Spells.Frostball;
         }
     }
 }

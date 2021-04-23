@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Oliver_EnemyController : MonoBehaviour
+public class Oliver_RagdollToggle : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Animator animator = null;

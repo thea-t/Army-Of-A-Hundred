@@ -2,34 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerSpells
+{
+    Fireball,
+    GravitySinkHole,
+    PoisonCloud
+}
 public class Oliver_Player_Controller : MonoBehaviour
 {
-    public Camera mainCamera;
-    public GameObject fireBallEffect;
-    public float fireBallRadius = 5f;
-    public float fireBallForce = 700f;
-    public GameObject gravitySinkHoleEffect;
-    public float gravitySinkHoleRadius = 5f;
-    public float gravitySinkHoleForce = 700f;
-    private void Fireball(Vector3 position, Quaternion rotation)
+    private void Start()
     {
-        Instantiate(fireBallEffect, position, rotation);
+        
+    }
 
-        Collider[] colliders = Physics.OverlapSphere(position, fireBallRadius);
-        foreach (Collider nearbyObject in colliders)
-        {
-            nearbyObject.GetComponent<Oliver_RagdollToggle>().isWalking = false;
-            nearbyObject.GetComponent<Oliver_RagdollToggle>().ToggleRagdoll(true);
-        }
+    private void onClickExplosion()
+    {
+        //Instantiate(onClickExplosionEffect, transform.position, transform.rotation);
+    }
 
-        Collider[] collidersToExplode = Physics.OverlapSphere(position, fireBallRadius);
-        foreach (Collider nearbyObject in collidersToExplode)
+    private void OnMouseDown()
+    {
+        if (gameObject.tag == "Enemy")
         {
-            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-            if (rb != null)
+            //Spell Effect
+            gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
+            gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
+            var ragdollBodies = gameObject.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in ragdollBodies)
             {
-                rb.AddExplosionForce(fireBallForce, position, fireBallRadius);
+                rb.AddExplosionForce(75f, transform.position, 5f, 0f, ForceMode.Impulse);
+                onClickExplosion();
             }
+            gameObject.GetComponent<Oliver_EnemyController>().hasDied = true;
         }
     }
 

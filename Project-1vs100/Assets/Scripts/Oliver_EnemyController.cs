@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Oliver_RagdollToggle : MonoBehaviour
+public class Oliver_EnemyController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Animator animator = null;
@@ -18,7 +18,7 @@ public class Oliver_RagdollToggle : MonoBehaviour
     public float delay = 4.9f;
     private float countdown;
     private bool hasExploded;
-    private bool hasDied;
+    public bool hasDied;
 
     private void Start()
     {
