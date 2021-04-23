@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Trap
+  - ButtonTrap
+  - Boulder
+  - Enemy
+  - Target
+  - Castle
   layers:
   - Default
   - TransparentFX

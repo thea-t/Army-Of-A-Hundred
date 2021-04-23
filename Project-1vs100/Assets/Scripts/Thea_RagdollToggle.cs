@@ -20,6 +20,7 @@ public class Thea_RagdollToggle : MonoBehaviour
     private bool hasExploded;
     private bool hasDied;
 
+
     private void Start()
     {
         ragdollBodies = GetComponentsInChildren<Rigidbody>();
@@ -32,18 +33,24 @@ public class Thea_RagdollToggle : MonoBehaviour
         //target = castle.transform;
     }
 
+    private void Update()
+    {
+        Walk(isWalking);
+        Death();
+    }
+
     public void ToggleRagdoll(bool state)
     {
         animator.enabled = !state;
 
-        foreach (Rigidbody rb in ragdollBodies)
+        foreach(Rigidbody rb in ragdollBodies)
         {
             rb.isKinematic = !state;
         }
 
         foreach (Collider collider in ragdollColliders)
         {
-            if (collider.isTrigger != true)
+            if(collider.isTrigger != true)
             {
                 collider.enabled = state;
             }
@@ -55,11 +62,7 @@ public class Thea_RagdollToggle : MonoBehaviour
         Instantiate(deathExplosionEffect, transform.position, transform.rotation);
     }
 
-    private void onClickExplosion()
-    {
-        Instantiate(onClickExplosionEffect, transform.position, transform.rotation);
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Boulder")
@@ -72,7 +75,7 @@ public class Thea_RagdollToggle : MonoBehaviour
 
     public void Walk(bool isWalking)
     {
-        if (isWalking == true)
+        if(isWalking == true)
         {
             float step = speed * Time.deltaTime;
             Vector3 target = new Vector3(castle.transform.position.x, transform.position.y, transform.position.z);
@@ -96,22 +99,37 @@ public class Thea_RagdollToggle : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (gameObject.tag == "Enemy")
+        if(gameObject.tag == "Enemy")
         {
             isWalking = false;
             ToggleRagdoll(true);
-            foreach (Rigidbody rb in ragdollBodies)
+            foreach(Rigidbody rb in ragdollBodies)
             {
                 rb.AddExplosionForce(75f, transform.position, 5f, 0f, ForceMode.Impulse);
-                onClickExplosion();
             }
+
             hasDied = true;
+            onClickExplosion();
         }
     }
 
-    private void Update()
+
+    private void onClickExplosion()
     {
-        Walk(isWalking);
-        Death();
+        if (GameManager.Instance.player.currentSpell == Spells.Fireball)
+        {
+            GetComponent<Thea_Spells>().OnEnemyBurning();
+        }
+        if (GameManager.Instance.player.currentSpell == Spells.Frostball)
+        {
+            GetComponent<Thea_Spells>().OnEnemyFrozen();
+        }
+        if (GameManager.Instance.player.currentSpell == Spells.Poison)
+        {
+            GetComponent<Thea_Spells>().OnEnemyPosioned();
+        }
     }
+
 }
+
+
