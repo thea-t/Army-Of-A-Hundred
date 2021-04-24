@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thea_Spells : MonoBehaviour
+public class _OLDThea_Spells : MonoBehaviour
 {
 
     [SerializeField] private ParticleSystem enemyBurning;

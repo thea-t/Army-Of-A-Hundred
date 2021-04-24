@@ -9,7 +9,7 @@ public enum Spells
     Frostball
 }
 
-public class Thea_Player : MonoBehaviour
+public class _OLDThea_Player : MonoBehaviour
 {
     public Spells currentSpell;
 

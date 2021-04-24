@@ -55,18 +55,22 @@ public class Oliver_Player_Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentSpell = PlayerSpells.MagicMissle;
+            GameManager.Instance.uIController.SwitchToSpell(PlayerSpells.MagicMissle);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentSpell = PlayerSpells.Fireball;
+            GameManager.Instance.uIController.SwitchToSpell(PlayerSpells.Fireball);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             currentSpell = PlayerSpells.PoisonCloud;
+            GameManager.Instance.uIController.SwitchToSpell(PlayerSpells.PoisonCloud);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             currentSpell = PlayerSpells.GravitySinkHole;
+            GameManager.Instance.uIController.SwitchToSpell(PlayerSpells.GravitySinkHole);
         }
     }
 

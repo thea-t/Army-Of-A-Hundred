@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thea_RagdollToggle : MonoBehaviour
+public class _OLDThea_RagdollToggle : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Animator animator = null;
@@ -109,26 +109,26 @@ public class Thea_RagdollToggle : MonoBehaviour
             }
 
             hasDied = true;
-            onClickExplosion();
+            //onClickExplosion();
         }
     }
 
 
-    private void onClickExplosion()
-    {
-        if (GameManager.Instance.player.currentSpell == Spells.Fireball)
-        {
-            GetComponent<Thea_Spells>().OnEnemyBurning();
-        }
-        if (GameManager.Instance.player.currentSpell == Spells.Frostball)
-        {
-            GetComponent<Thea_Spells>().OnEnemyFrozen();
-        }
-        if (GameManager.Instance.player.currentSpell == Spells.Poison)
-        {
-            GetComponent<Thea_Spells>().OnEnemyPosioned();
-        }
-    }
+    //private void onClickExplosion()
+    //{
+    //    if (GameManager.Instance.player.currentSpell == Spells.Fireball)
+    //    {
+    //        GetComponent<_OLDThea_Spells>().OnEnemyBurning();
+    //    }
+    //    if (GameManager.Instance.player.currentSpell == Spells.Frostball)
+    //    {
+    //        GetComponent<_OLDThea_Spells>().OnEnemyFrozen();
+    //    }
+    //    if (GameManager.Instance.player.currentSpell == Spells.Poison)
+    //    {
+    //        GetComponent<_OLDThea_Spells>().OnEnemyPosioned();
+    //    }
+    //}
 
 }
 

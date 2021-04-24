@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
         else { Destroy(gameObject); }
     }
 
-    public Thea_Player player;
+    //public _OLDThea_Player player;
+    public Thea_UIController uIController;
 
 }
