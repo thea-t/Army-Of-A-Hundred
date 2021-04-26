@@ -44,7 +44,7 @@ public class Thea_UIController : MonoBehaviour
 
     public void SetHealthBarPercent(float percent)
     {
-        float backgroundWidth = healthBarBackground.rectTransform.rect.width;
+        float backgroundWidth = healthBarBackground.GetComponent<RectTransform>().rect.width;
         float width = backgroundWidth * percent;
         healthBarForeground.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
     }

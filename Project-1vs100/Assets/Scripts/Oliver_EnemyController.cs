@@ -21,6 +21,7 @@ public class Oliver_EnemyController : MonoBehaviour
     private float health = 100f;
     public bool isPoisoned;
     private float poisonDmg = 33.4f;
+    public bool isAttacking;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class Oliver_EnemyController : MonoBehaviour
         castle = GameObject.FindGameObjectWithTag("Target");
         hasDied = false;
         isPoisoned = false;
+        isAttacking = false;
     }
 
     public void ToggleRagdoll(bool state)
@@ -97,6 +99,10 @@ public class Oliver_EnemyController : MonoBehaviour
     {
         if (hasDied == true)
         {
+            if(isAttacking == true)
+            {
+                isAttacking = false;
+            }
             countdown -= Time.deltaTime;
             if (countdown <= 0f && hasExploded == false)
             {

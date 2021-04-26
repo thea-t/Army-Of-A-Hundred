@@ -7,6 +7,7 @@ public class Thea_EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     private int enemiesRemainingToSpawn;
     [HideInInspector] public int enemiesRemaining;
+    public GameObject youWin;
     
     
     void Start()
@@ -17,7 +18,10 @@ public class Thea_EnemySpawner : MonoBehaviour
 
     void Update()
     {
-       
+       if(enemiesRemaining <= 0)
+        {
+            youWin.SetActive(true);
+        }
     }
 
     IEnumerator SpawnEnemy()
