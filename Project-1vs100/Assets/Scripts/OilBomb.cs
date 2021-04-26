@@ -7,7 +7,7 @@ public class OilBomb : MonoBehaviour
     [SerializeField]
     float m_impactThreshold;
     [SerializeField]
-    GameObject m_bigExplosion;
+    GameObject m_oilSplatter;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,7 +15,11 @@ public class OilBomb : MonoBehaviour
         if (collisionForce > m_impactThreshold)
         {
             Debug.Log("I'm gonna blow up" + collisionForce);
-            Instantiate(m_bigExplosion, transform);
+            //ParticleSystem explosion= Instantiate(m_bigExplosion, transform).GetComponent<ParticleSystem>();
+            //explosion.Play();
+            Instantiate(m_oilSplatter, transform);
+            //gameObject.SetActive(false);
+            Destroy(gameObject,3f);
         }
     }
 }
