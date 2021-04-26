@@ -19,6 +19,7 @@ public class Thea_EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
+        yield return new WaitForSeconds(2.5f);
         for (int i = 0; i < 100; i++)
         {
             //https://docs.unity3d.com/ScriptReference/Quaternion.Euler.html

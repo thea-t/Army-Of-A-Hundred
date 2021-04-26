@@ -26,7 +26,7 @@ public class Thea_UIController : MonoBehaviour
             }
             else
             {
-                tempColor.a = 0.4f;
+                tempColor.a = 0.3f;
             }
             spellImages[i].color = tempColor;
         }

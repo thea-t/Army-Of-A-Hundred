@@ -14,5 +14,4 @@ public class GameManager : MonoBehaviour
 
     //public _OLDThea_Player player;
     public Thea_UIController uIController;
-
 }
