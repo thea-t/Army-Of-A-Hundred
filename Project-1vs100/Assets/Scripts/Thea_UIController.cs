@@ -8,6 +8,10 @@ public class Thea_UIController : MonoBehaviour
 {
     [SerializeField] Image[] spellImages;
     public Oliver_Player_Controller player_Controller;
+    public Thea_EnemySpawner enemySpawner;
+    public Image healthBarForeground;
+    public Image healthBarBackground;
+    public TMP_Text enemiesLeft;
     public TMP_Text availableMagicMissile;
     public TMP_Text availableFireball;
     public TMP_Text availablePoisionCloud;
@@ -38,8 +42,16 @@ public class Thea_UIController : MonoBehaviour
         }
     }
 
+    public void SetHealthBarPercent(float percent)
+    {
+        float backgroundWidth = healthBarBackground.rectTransform.rect.width;
+        float width = backgroundWidth * percent;
+        healthBarForeground.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+    }
+
     private void Update()
     {
+        enemiesLeft.text = enemySpawner.enemiesRemaining.ToString();
         availableMagicMissile.text = player_Controller.level1SpellSlots.ToString();
         availableFireball.text = player_Controller.level2SpellSlots.ToString();
         availablePoisionCloud.text = player_Controller.level3SpellSlots.ToString();

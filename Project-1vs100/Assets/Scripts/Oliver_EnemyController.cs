@@ -6,7 +6,7 @@ public class Oliver_EnemyController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Animator animator = null;
-    public GameObject character;
+    private GameObject spawnPoint;
     public GameObject deathExplosionEffect;
     public GameObject onClickExplosionEffect;
     private Rigidbody[] ragdollBodies;
@@ -29,6 +29,7 @@ public class Oliver_EnemyController : MonoBehaviour
         ToggleRagdoll(false);
         isWalking = true;
         countdown = delay;
+        spawnPoint = GameObject.Find("EnemySpawner");
         castle = GameObject.FindGameObjectWithTag("Target");
         hasDied = false;
         isPoisoned = false;
@@ -100,7 +101,8 @@ public class Oliver_EnemyController : MonoBehaviour
             if (countdown <= 0f && hasExploded == false)
             {
                 deathExplosion();
-                Destroy(character);
+                spawnPoint.GetComponent<Thea_EnemySpawner>().enemiesRemaining--;
+                Destroy(gameObject);
                 hasExploded = true;
             }
         }

@@ -5,12 +5,14 @@ using UnityEngine;
 public class Thea_EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
-    public int enemiesRemaining = 100;
+    private int enemiesRemainingToSpawn;
+    [HideInInspector] public int enemiesRemaining;
     
     
     void Start()
     {
         StartCoroutine(SpawnEnemy());
+        enemiesRemaining = 100;
     }
 
     void Update()
@@ -21,7 +23,7 @@ public class Thea_EnemySpawner : MonoBehaviour
     IEnumerator SpawnEnemy()
     {
         yield return new WaitForSeconds(2.5f);
-        for (int i = 0; i < 100; i++)
+        for (enemiesRemainingToSpawn = 100; enemiesRemainingToSpawn > 0; enemiesRemainingToSpawn--)
         {
             //https://docs.unity3d.com/ScriptReference/Quaternion.Euler.html
             yield return new WaitForSeconds(Random.Range(0.5f, 2.5f));
