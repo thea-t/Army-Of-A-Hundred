@@ -5,14 +5,10 @@ using UnityEngine;
 public class Oliver_TriggerTrap : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    //private GameObject[] enemies;
-    private GameObject trap;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        trap = GameObject.FindGameObjectWithTag("Trap");
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +18,6 @@ public class Oliver_TriggerTrap : MonoBehaviour
                 //animator.SetBool("drawSword", true);
                 other.GetComponent<Animator>().SetBool("attack", true);
                 other.GetComponent<Oliver_EnemyController>().isWalking = false;
-                trap.GetComponent<BoxCollider>().enabled = false;
             }
     }
 

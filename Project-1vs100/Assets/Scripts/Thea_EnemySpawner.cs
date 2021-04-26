@@ -5,6 +5,7 @@ using UnityEngine;
 public class Thea_EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
+    public int enemiesRemaining = 100;
     
     
     void Start()

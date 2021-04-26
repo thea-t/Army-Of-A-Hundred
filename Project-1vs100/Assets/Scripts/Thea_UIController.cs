@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Thea_UIController : MonoBehaviour
 {
-    [SerializeField] Image[] spellImages; 
+    [SerializeField] Image[] spellImages;
+    public Oliver_Player_Controller player_Controller;
+    public TMP_Text availableMagicMissile;
+    public TMP_Text availableFireball;
+    public TMP_Text availablePoisionCloud;
+    public TMP_Text availableGravitySinkHole;
 
 
     private void Start()
@@ -30,6 +36,14 @@ public class Thea_UIController : MonoBehaviour
             }
             spellImages[i].color = tempColor;
         }
+    }
+
+    private void Update()
+    {
+        availableMagicMissile.text = player_Controller.level1SpellSlots.ToString();
+        availableFireball.text = player_Controller.level2SpellSlots.ToString();
+        availablePoisionCloud.text = player_Controller.level3SpellSlots.ToString();
+        availableGravitySinkHole.text = player_Controller.level4SpellSlots.ToString();
     }
 
 }

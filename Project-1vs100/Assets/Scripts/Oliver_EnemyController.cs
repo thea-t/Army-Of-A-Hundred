@@ -12,7 +12,6 @@ public class Oliver_EnemyController : MonoBehaviour
     private Rigidbody[] ragdollBodies;
     private Collider[] ragdollColliders;
     private float speed = 2.0f;
-    //private Transform target;
     private GameObject castle;
     public bool isWalking;
     public float delay = 4.9f;
@@ -33,7 +32,6 @@ public class Oliver_EnemyController : MonoBehaviour
         castle = GameObject.FindGameObjectWithTag("Target");
         hasDied = false;
         isPoisoned = false;
-        //target = castle.transform;
     }
 
     public void ToggleRagdoll(bool state)

@@ -14,6 +14,10 @@ public class Oliver_Player_Controller : MonoBehaviour
     public Camera mainCamera;
     public PlayerSpells currentSpell;
     public Oliver_Spell_List spells;
+    public int level1SpellSlots = 85;
+    public int level2SpellSlots = 35;
+    public int level3SpellSlots = 25;
+    public int level4SpellSlots = 15;
 
     private void Start()
     {
@@ -30,20 +34,24 @@ public class Oliver_Player_Controller : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 var clickedObj = hit.transform.gameObject;
-                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.MagicMissle)
+                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.MagicMissle && level1SpellSlots > 0)
                 {
+                    level1SpellSlots--;
                     spells.MagicMissle(clickedObj);
                 }
-                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.Fireball)
+                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.Fireball && level2SpellSlots > 0)
                 {
+                    level2SpellSlots--;
                     spells.Fireball(clickedObj);
                 }
-                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.PoisonCloud)
+                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.PoisonCloud && level3SpellSlots > 0)
                 {
+                    level3SpellSlots--;
                     spells.PoisonCloud(clickedObj);
                 }
-                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.GravitySinkHole)
+                if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.GravitySinkHole && level4SpellSlots > 0)
                 {
+                    level4SpellSlots--;
                     spells.GravitySinkHole(clickedObj);
                 }
             }
