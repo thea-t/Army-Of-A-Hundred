@@ -12,7 +12,9 @@ public class OilSplatter : MonoBehaviour
             Debug.Log("An enemy walked in");
             //Oliver_EnemyController enemyController;
             //other.gameObject.TryGetComponent(out enemyController);
-            other.gameObject.GetComponent<Animator>().speed = 0f;
+            other.gameObject.GetComponent<Animator>().speed=0f;
+
+            float newSpeed = other.gameObject.GetComponent<Animator>().speed;
 
         }
     }
