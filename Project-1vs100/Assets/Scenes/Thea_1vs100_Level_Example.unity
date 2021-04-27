@@ -1826,7 +1826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &79738280
 Transform:
   m_ObjectHideFlags: 0
@@ -1871,7 +1871,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7766854, y: 1}
+    m_SensorSize: {x: 1.6, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9453,7 +9453,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee887772189eeb4a97ca3652cc46d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  uIController: {fileID: 0}
+  maxHealth: 200
+  currentHealth: 0
+  youLose: {fileID: 0}
 --- !u!1001 &386173797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27186,6 +27189,15 @@ MonoBehaviour:
   - {fileID: 455959045}
   - {fileID: 519583579}
   - {fileID: 277235587}
+  player_Controller: {fileID: 0}
+  enemySpawner: {fileID: 0}
+  healthBarForeground: {fileID: 0}
+  healthBarBackground: {fileID: 0}
+  enemiesLeft: {fileID: 0}
+  availableMagicMissile: {fileID: 0}
+  availableFireball: {fileID: 0}
+  availablePoisionCloud: {fileID: 0}
+  availableGravitySinkHole: {fileID: 0}
 --- !u!1001 &1082068405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34002,6 +34014,10 @@ MonoBehaviour:
   mainCamera: {fileID: 1348409016}
   currentSpell: 0
   spells: {fileID: 1348409013}
+  level1SpellSlots: 85
+  level2SpellSlots: 35
+  level3SpellSlots: 25
+  level4SpellSlots: 15
 --- !u!81 &1348409015
 AudioListener:
   m_ObjectHideFlags: 0
@@ -34060,8 +34076,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348409012}
-  m_LocalRotation: {x: 0.092011265, y: -0.15078248, z: 0.007545382, w: 0.98424673}
-  m_LocalPosition: {x: -13.7, y: 1.3000001, z: -2}
+  m_LocalRotation: {x: 0.14205888, y: 0.006540476, z: -0.008221221, w: 0.9898025}
+  m_LocalPosition: {x: 3.6083603, y: 6.441666, z: -19.46601}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 831314336}
@@ -38401,7 +38417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1550688383
 Transform:
   m_ObjectHideFlags: 0
@@ -45642,6 +45658,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7129257532036337075, guid: 09e8d6ac055e9d1439505721198e566d,
     type: 3}
+  enemiesRemaining: 0
+  youWin: {fileID: 0}
 --- !u!4 &1835370772
 Transform:
   m_ObjectHideFlags: 0
@@ -51271,7 +51289,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7766854, y: 1}
+    m_SensorSize: {x: 1.6, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -52739,7 +52757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee887772189eeb4a97ca3652cc46d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  uIController: {fileID: 0}
+  maxHealth: 200
+  currentHealth: 0
+  youLose: {fileID: 0}
 --- !u!65 &5511228566035475767
 BoxCollider:
   m_ObjectHideFlags: 0

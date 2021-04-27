@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 58ee4fa3d0713fd4cbe3de9f9c88fbd8
+  - enabled: 1
+    path: Assets/Scenes/Oliver_Level_Var_Snow.unity
+    guid: 641ba31a260699341b03eecb9b4f0609
+  - enabled: 1
+    path: Assets/Imported Assets/Loading Screen/Example/Scenes/LoadExample.unity
+    guid: 511f544c1ae32b3448425de6b65acff2
+  m_configObjects: {}

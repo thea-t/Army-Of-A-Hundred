@@ -14,6 +14,7 @@ public class Oliver_EnemyController : MonoBehaviour
     private float speed = 2.0f;
     private GameObject castle;
     public bool isWalking;
+    public bool isRunning;
     public float delay = 4.9f;
     private float countdown;
     private bool hasExploded;
@@ -21,7 +22,10 @@ public class Oliver_EnemyController : MonoBehaviour
     private float health = 100f;
     public bool isPoisoned;
     private float poisonDmg = 33.4f;
+    private float step;
     public bool isAttacking;
+    private int randomAnimation;
+    private string[] walkingAnims = { "walking", "run_jogging", "run_sprinting" };
 
     private void Start()
     {
@@ -35,6 +39,10 @@ public class Oliver_EnemyController : MonoBehaviour
         hasDied = false;
         isPoisoned = false;
         isAttacking = false;
+
+        randomAnimation = Random.Range(0, 2);
+        animator.SetBool(walkingAnims[randomAnimation], true);
+        SyncSpeedWithAnimations();
     }
 
     public void ToggleRagdoll(bool state)
@@ -70,11 +78,10 @@ public class Oliver_EnemyController : MonoBehaviour
         }
     }
 
-    public void Walk(bool isWalking)
+    public void Walk()
     {
         if(isWalking == true)
         {
-            float step = speed * Time.deltaTime;
             Vector3 target = new Vector3(castle.transform.position.x, transform.position.y, transform.position.z);
             transform.position = Vector3.MoveTowards(transform.position, target, step);
         }
@@ -114,9 +121,25 @@ public class Oliver_EnemyController : MonoBehaviour
         }
     }
 
+    private void SyncSpeedWithAnimations()
+    {
+        if (randomAnimation == 0)
+        {
+            step = speed* Time.deltaTime;
+        }
+        if (randomAnimation == 1)
+        {
+            step = speed* 1.2f *Time.deltaTime;
+        }
+        if (randomAnimation == 1)
+        {
+            step = speed* 1.5f *Time.deltaTime;
+        }
+    }
+
     private void Update()
     {
-        Walk(isWalking);
+        Walk();
         Poisoned();
         Death();
     }

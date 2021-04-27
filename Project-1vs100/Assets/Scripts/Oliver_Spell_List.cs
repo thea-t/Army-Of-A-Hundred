@@ -20,7 +20,8 @@ public class Oliver_Spell_List : MonoBehaviour
 
     public void MagicMissle(GameObject gameObject)
     {
-        Instantiate(magicMissleEffect, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject magicMissle = Instantiate(magicMissleEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
+        Destroy(magicMissle);
         gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
         gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
         var ragdollBodies = gameObject.GetComponentsInChildren<Rigidbody>();
@@ -32,7 +33,8 @@ public class Oliver_Spell_List : MonoBehaviour
     }
     public void Fireball(GameObject gameObject)
     {
-        Instantiate(fireBallEffect, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject fireball = Instantiate(fireBallEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
+        Destroy(fireball, 3);
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, fireBallRadius, 1, QueryTriggerInteraction.Collide);
         foreach (Collider nearbyObject in colliders)
         {
@@ -58,7 +60,8 @@ public class Oliver_Spell_List : MonoBehaviour
 
     public void PoisonCloud(GameObject gameObject)
     {
-        Instantiate(posionCloudEffect, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject poisonCloud = Instantiate(posionCloudEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
+        Destroy(poisonCloud,3);
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, posionCloudRadius, 1, QueryTriggerInteraction.Collide);
         foreach (Collider nearbyObject in colliders)
         {
@@ -73,7 +76,8 @@ public class Oliver_Spell_List : MonoBehaviour
 
     public void GravitySinkHole(GameObject gameObject)
     {
-        Instantiate(gravitySinkHoleEffect, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject gravitySinkHole = Instantiate(gravitySinkHoleEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
+        Destroy(gravitySinkHole,3);
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, gravitySinkHoleRadius, 1, QueryTriggerInteraction.Collide);
         foreach (Collider nearbyObject in colliders)
         {
