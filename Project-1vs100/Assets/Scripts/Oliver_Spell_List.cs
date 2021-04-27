@@ -21,7 +21,7 @@ public class Oliver_Spell_List : MonoBehaviour
     public void MagicMissle(GameObject gameObject)
     {
         GameObject magicMissle = Instantiate(magicMissleEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
-        Destroy(magicMissle);
+        Destroy(magicMissle,3);
         gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
         gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
         var ragdollBodies = gameObject.GetComponentsInChildren<Rigidbody>();

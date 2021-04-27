@@ -83,7 +83,7 @@ public class Oliver_EnemyController : MonoBehaviour
         if(isWalking == true)
         {
             Vector3 target = new Vector3(castle.transform.position.x, transform.position.y, transform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, target, step);
+            transform.position = Vector3.MoveTowards(transform.position, target, step* Time.deltaTime);
         }
     }
 
@@ -125,15 +125,15 @@ public class Oliver_EnemyController : MonoBehaviour
     {
         if (randomAnimation == 0)
         {
-            step = speed* Time.deltaTime;
+            step = speed;
         }
         if (randomAnimation == 1)
         {
-            step = speed* 1.2f *Time.deltaTime;
+            step = speed* 1.2f;
         }
         if (randomAnimation == 1)
         {
-            step = speed* 1.5f *Time.deltaTime;
+            step = speed* 1.7f;
         }
     }
 
