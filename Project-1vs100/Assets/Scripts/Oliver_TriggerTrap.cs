@@ -27,7 +27,7 @@ public class Oliver_TriggerTrap : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other != null)
+        if (other.GetComponent<Oliver_EnemyController>() != null)
         {
             if (other.GetComponent<Oliver_EnemyController>().isAttacking == true)
             {

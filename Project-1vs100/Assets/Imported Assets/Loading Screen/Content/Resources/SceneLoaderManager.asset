@@ -18,11 +18,38 @@ MonoBehaviour:
       SceneAsset: {fileID: 102900000, guid: 58ee4fa3d0713fd4cbe3de9f9c88fbd8, type: 3}
       DisplayName: Menu
       Description: 
-      SkipType: 0
-      LoadingType: 0
-      FakeLoadingTime: 0
+      SkipType: 3
+      LoadingType: 1
+      FakeLoadingTime: 5
       Backgrounds: []
-    - SceneName: Oliver_Level_Var_Snow
+    - SceneName: Level_1
+      SceneAsset: {fileID: 102900000, guid: 2e802455658a0ed48a56788ca91ee973, type: 3}
+      DisplayName: Snow Storm
+      Description: The great winter battle!
+      SkipType: 3
+      LoadingType: 1
+      FakeLoadingTime: 5
+      Backgrounds:
+      - {fileID: 21300000, guid: 2dee17a527a11644381178dd528f4429, type: 3}
+    - SceneName: Level_2
+      SceneAsset: {fileID: 102900000, guid: 1313a258e6aedc84bb4d977e50ea69ff, type: 3}
+      DisplayName: Snow Storm
+      Description: The great winter battle!
+      SkipType: 3
+      LoadingType: 1
+      FakeLoadingTime: 5
+      Backgrounds:
+      - {fileID: 21300000, guid: 2dee17a527a11644381178dd528f4429, type: 3}
+    - SceneName: Level_3
+      SceneAsset: {fileID: 102900000, guid: 1c2a3f769ba25d24c9bbb838730b18af, type: 3}
+      DisplayName: Snow Storm
+      Description: The great winter battle!
+      SkipType: 3
+      LoadingType: 1
+      FakeLoadingTime: 5
+      Backgrounds:
+      - {fileID: 21300000, guid: 2dee17a527a11644381178dd528f4429, type: 3}
+    - SceneName: Level_4
       SceneAsset: {fileID: 102900000, guid: 641ba31a260699341b03eecb9b4f0609, type: 3}
       DisplayName: Snow Storm
       Description: The great winter battle!

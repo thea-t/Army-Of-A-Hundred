@@ -10,10 +10,10 @@ public class bl_LoadingScreenExample : MonoBehaviour
 
     private void Update()
     {
-        if (!loaded && Input.GetKeyDown(KeyCode.Space))
-        {
-            bl_SceneLoaderUtils.GetLoader.LoadLevel(SceneName);
-            loaded = true;
-        }
+        //if (!loaded && Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    bl_SceneLoaderUtils.GetLoader.LoadLevel(SceneName);
+        //    loaded = true;
+        //}
     }
 }
