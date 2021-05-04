@@ -5,12 +5,14 @@ using UnityEngine;
 public class Oliver_TriggerTrap : MonoBehaviour
 {
     [SerializeField] private Thea_UIController uIController;
+    private GameObject audioManager;
     public float maxHealth = 200f;
     public float currentHealth;
     public GameObject youLose;
 
     void Start()
     {
+        audioManager = GameObject.Find("AudioManager");
         currentHealth = maxHealth;
     }
 
@@ -20,6 +22,7 @@ public class Oliver_TriggerTrap : MonoBehaviour
         {
             //animator.SetBool("drawSword", true);
             other.GetComponent<Animator>().SetBool("attack", true);
+            //audioManager.GetComponent<AudioManager>().Play("attackEffect");
             other.GetComponent<Oliver_EnemyController>().isAttacking = true;
             other.GetComponent<Oliver_EnemyController>().isWalking = false;
         }

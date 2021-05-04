@@ -14,6 +14,7 @@ public class Oliver_Player_Controller : MonoBehaviour
     public Camera mainCamera;
     public PlayerSpells currentSpell;
     public Oliver_Spell_List spells;
+    private GameObject audioManager;
     public int level1SpellSlots = 85;
     public int level2SpellSlots = 35;
     public int level3SpellSlots = 25;
@@ -21,7 +22,7 @@ public class Oliver_Player_Controller : MonoBehaviour
 
     private void Start()
     {
-        
+        audioManager = GameObject.Find("AudioManager");
     }
 
     private void OnClick()
@@ -38,21 +39,25 @@ public class Oliver_Player_Controller : MonoBehaviour
                 {
                     level1SpellSlots--;
                     spells.MagicMissle(clickedObj);
+                    audioManager.GetComponent<AudioManager>().Play("magicMissile");
                 }
                 if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.Fireball && level2SpellSlots > 0)
                 {
                     level2SpellSlots--;
                     spells.Fireball(clickedObj);
+                    audioManager.GetComponent<AudioManager>().Play("fireball");
                 }
                 if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.PoisonCloud && level3SpellSlots > 0)
                 {
                     level3SpellSlots--;
                     spells.PoisonCloud(clickedObj);
+                    audioManager.GetComponent<AudioManager>().Play("poisonCloud");
                 }
                 if (clickedObj.tag == "Enemy" && currentSpell == PlayerSpells.GravitySinkHole && level4SpellSlots > 0)
                 {
                     level4SpellSlots--;
                     spells.GravitySinkHole(clickedObj);
+                    audioManager.GetComponent<AudioManager>().Play("gravitySinkhole");
                 }
             }
         }

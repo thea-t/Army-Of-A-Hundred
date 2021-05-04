@@ -9,6 +9,7 @@ public class Oliver_EnemyController : MonoBehaviour
     private GameObject spawnPoint;
     public GameObject deathExplosionEffect;
     public GameObject onClickExplosionEffect;
+    private GameObject audioManager;
     private Rigidbody[] ragdollBodies;
     private Collider[] ragdollColliders;
     private float speed = 2.0f;
@@ -29,6 +30,7 @@ public class Oliver_EnemyController : MonoBehaviour
 
     private void Start()
     {
+        audioManager = GameObject.Find("AudioManager");
         ragdollBodies = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
         ToggleRagdoll(false);
@@ -82,6 +84,7 @@ public class Oliver_EnemyController : MonoBehaviour
     {
         if(isWalking == true)
         {
+            audioManager.GetComponent<AudioManager>().Play("footsteps");
             Vector3 target = new Vector3(castle.transform.position.x, transform.position.y, transform.position.z);
             transform.position = Vector3.MoveTowards(transform.position, target, step* Time.deltaTime);
         }
@@ -114,6 +117,7 @@ public class Oliver_EnemyController : MonoBehaviour
             if (countdown <= 0f && hasExploded == false)
             {
                 deathExplosion();
+                audioManager.GetComponent<AudioManager>().Play("deathSound");
                 spawnPoint.GetComponent<Thea_EnemySpawner>().enemiesRemaining--;
                 Destroy(gameObject);
                 hasExploded = true;
