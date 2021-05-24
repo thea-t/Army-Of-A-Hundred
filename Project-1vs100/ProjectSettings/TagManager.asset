@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Target
   - Castle
+  - EnemyHitBox
   layers:
   - Default
   - TransparentFX

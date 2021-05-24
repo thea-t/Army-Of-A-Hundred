@@ -20,30 +20,23 @@ public class Oliver_Spell_List : MonoBehaviour
 
     public void MagicMissle(GameObject gameObject)
     {
-        GameObject magicMissle = Instantiate(magicMissleEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
-        Destroy(magicMissle,3);
-        gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
-        gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
-        var ragdollBodies = gameObject.GetComponentsInChildren<Rigidbody>();
+        Instantiate(magicMissleEffect, gameObject.transform.position, gameObject.transform.rotation);
+        gameObject.GetComponent<Oliver_EnemyController>().Death();
+        var ragdollBodies = gameObject.transform.parent.GetComponentsInChildren<Rigidbody>();
         foreach (Rigidbody rb in ragdollBodies)
         {
             rb.AddExplosionForce(magicMissleForce, gameObject.transform.position, magicMissleRadius, 0f, ForceMode.Impulse);
         }
-        gameObject.GetComponent<Oliver_EnemyController>().hasDied = true;
     }
     public void Fireball(GameObject gameObject)
     {
-        GameObject fireball = Instantiate(fireBallEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
-        Destroy(fireball, 3);
+        Instantiate(fireBallEffect, gameObject.transform.position, gameObject.transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, fireBallRadius, 1, QueryTriggerInteraction.Collide);
         foreach (Collider nearbyObject in colliders)
         {
             if(nearbyObject.CompareTag("Enemy"))
             {
-                Debug.Log("Enemy");
-                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
-                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
-                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().hasDied = true;
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().Death();
             }
         }
 
@@ -60,14 +53,12 @@ public class Oliver_Spell_List : MonoBehaviour
 
     public void PoisonCloud(GameObject gameObject)
     {
-        GameObject poisonCloud = Instantiate(posionCloudEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
-        Destroy(poisonCloud,3);
+        Instantiate(posionCloudEffect, gameObject.transform.position, gameObject.transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, posionCloudRadius, 1, QueryTriggerInteraction.Collide);
         foreach (Collider nearbyObject in colliders)
         {
             if (nearbyObject.CompareTag("Enemy"))
             {
-                Debug.Log("Enemy");
                 nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().isPoisoned = true;
                 nearbyObject.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material = posionedEnemyMat;
             }
@@ -76,17 +67,13 @@ public class Oliver_Spell_List : MonoBehaviour
 
     public void GravitySinkHole(GameObject gameObject)
     {
-        GameObject gravitySinkHole = Instantiate(gravitySinkHoleEffect, gameObject.transform.position, gameObject.transform.rotation).gameObject;
-        Destroy(gravitySinkHole,3);
+        Instantiate(gravitySinkHoleEffect, gameObject.transform.position, gameObject.transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, gravitySinkHoleRadius, 1, QueryTriggerInteraction.Collide);
         foreach (Collider nearbyObject in colliders)
         {
             if (nearbyObject.CompareTag("Enemy"))
             {
-                Debug.Log("Enemy");
-                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().isWalking = false;
-                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().ToggleRagdoll(true);
-                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().hasDied = true;
+                nearbyObject.gameObject.GetComponent<Oliver_EnemyController>().Death();
             }
         }
 

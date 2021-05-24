@@ -20,7 +20,6 @@ public class Oliver_TriggerTrap : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            //animator.SetBool("drawSword", true);
             other.GetComponent<Animator>().SetBool("attack", true);
             //audioManager.GetComponent<AudioManager>().Play("attackEffect");
             other.GetComponent<Oliver_EnemyController>().isAttacking = true;
