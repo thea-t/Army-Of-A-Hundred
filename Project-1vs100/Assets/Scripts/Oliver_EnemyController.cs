@@ -84,7 +84,7 @@ public class Oliver_EnemyController : MonoBehaviour
     {
         if(isWalking == true)
         {
-            audioManager.GetComponent<AudioManager>().Play("footsteps");
+            //audioManager.GetComponent<AudioManager>().Play("footsteps");
             Vector3 target = new Vector3(castle.transform.position.x, transform.position.y, transform.position.z);
             transform.position = Vector3.MoveTowards(transform.position, target, step* Time.deltaTime);
         }

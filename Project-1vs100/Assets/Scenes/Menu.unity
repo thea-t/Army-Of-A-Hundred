@@ -4164,31 +4164,31 @@ MonoBehaviour:
   sounds:
   - name: magicMissile
     clip: {fileID: 8300000, guid: 3905b8e06c79f3d44bb782812ea070d0, type: 3}
-    volume: 0.1
+    volume: 0.05
     pitch: 0.5
     loop: 0
     source: {fileID: 0}
   - name: fireball
     clip: {fileID: 8300000, guid: 53dce1a12f99f574f832fcdd5d67f05d, type: 3}
-    volume: 0.75
+    volume: 0.45
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: poisonCloud
     clip: {fileID: 8300000, guid: 61b797ba31c196d44ac847b843faf8c1, type: 3}
-    volume: 0.65
+    volume: 0.45
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: gravitySinkhole
     clip: {fileID: 8300000, guid: 41282a327fa2291439bfccd2c4f4ff30, type: 3}
-    volume: 1
+    volume: 0.65
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: deathSound
     clip: {fileID: 8300000, guid: 8eac1467b4024dd438a670dfcc29d651, type: 3}
-    volume: 0.75
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -4200,7 +4200,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: attackEffect
     clip: {fileID: 8300000, guid: db41a1e3b7ffa0b4ab98646ca8b1976a, type: 3}
-    volume: 1
+    volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
