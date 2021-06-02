@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Oliver_TriggerTrap : MonoBehaviour
+public class Oliver_CastleController : MonoBehaviour
 {
     [SerializeField] private Thea_UIController uIController;
-    private GameObject audioManager;
     public float maxHealth = 200f;
     public float currentHealth;
     public GameObject youLose;
 
     void Start()
     {
-        audioManager = GameObject.Find("AudioManager");
         currentHealth = maxHealth;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             other.GetComponent<Animator>().SetBool("attack", true);
-            //audioManager.GetComponent<AudioManager>().Play("attackEffect");
             other.GetComponent<Oliver_EnemyController>().isAttacking = true;
             other.GetComponent<Oliver_EnemyController>().isWalking = false;
         }
@@ -41,7 +38,7 @@ public class Oliver_TriggerTrap : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-            if (other.gameObject.tag == "Enemy")
+            if (other.gameObject.CompareTag("Enemy"))
             {
                 other.GetComponent<Animator>().SetBool("attack", false);
                 other.GetComponent<Oliver_EnemyController>().isWalking = true;

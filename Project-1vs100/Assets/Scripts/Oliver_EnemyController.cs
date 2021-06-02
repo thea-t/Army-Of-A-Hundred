@@ -41,6 +41,7 @@ public class Oliver_EnemyController : MonoBehaviour
         randomAnimation = Random.Range(0, 2);
         animator.SetBool(walkingAnims[randomAnimation], true);
         SyncSpeedWithAnimations();
+        SetAgentTarget();
     }
 
     public void ToggleRagdoll(bool state)
@@ -66,12 +67,17 @@ public class Oliver_EnemyController : MonoBehaviour
         Instantiate(deathExplosionEffect, transform.position, transform.rotation);
     }
 
-    public void Walk()
+    private void SetAgentTarget()
     {
-        if(isWalking == true)
+        Vector3 target = new Vector3(castle.transform.position.x, transform.position.y, transform.position.z);
+        agent.destination = target;
+    }
+
+    public void StopWalking()
+    {
+        if(isWalking == false)
         {
-            Vector3 target = new Vector3(castle.transform.position.x, transform.position.y, transform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, target, step* Time.deltaTime);
+            agent.destination = transform.position;
         }
     }
 
@@ -119,7 +125,7 @@ public class Oliver_EnemyController : MonoBehaviour
 
     private void Update()
     {
-        Walk();
+        StopWalking();
         Poisoned();
     }
 }
